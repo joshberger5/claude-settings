@@ -1,0 +1,8 @@
+# Claude credentials — never commit
+.credentials.json
+
+# Ephemeral runtime data
+history.jsonl
+mcp-needs-auth-cache.json
+statusline-debug.json
+gsd-file-manifest.json
