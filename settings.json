@@ -5,22 +5,13 @@
     ]
   },
   "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "node \"C:/Users/Josh Berger/.claude/hooks/gsd-check-update.js\""
-          }
-        ]
-      }
-    ],
+    "SessionStart": [],
     "PostToolUse": [
       {
         "hooks": [
           {
             "type": "command",
-            "command": "node \"C:/Users/Josh Berger/.claude/hooks/gsd-context-monitor.js\""
+            "command": "node /Users/joshuaberger/.claude/hooks/gsd-context-monitor.js"
           }
         ]
       }
@@ -28,7 +19,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "bash ~/.claude/statusline-command.sh"
+    "command": "node /Users/joshuaberger/.claude/hooks/gsd-statusline.js"
   },
   "autoUpdatesChannel": "latest",
   "skipDangerousModePermissionPrompt": true

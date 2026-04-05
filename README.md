@@ -1,6 +1,6 @@
 # claude-settings
 
-Living version-control for my Claude Code configuration. Every meaningful change to CLAUDE.md rules, GSD settings, hooks, or statusline gets committed here — so I can see how my setup evolves over time and restore it on a new machine.
+Living version-control for my Claude Code configuration. Every meaningful change to CLAUDE.md rules, hooks, or statusline gets committed here — so I can see how my setup evolves over time and restore it on a new machine.
 
 ## What's tracked
 
@@ -8,41 +8,41 @@ Living version-control for my Claude Code configuration. Every meaningful change
 |---|---|
 | `CLAUDE.md` | Global Claude rules (architecture, git, TDD, PR format, etc.) |
 | `settings.json` | Permissions, hooks, statusline config |
-| `statusline-command.sh` | Custom statusline: tokens, cost, context bar |
 | `package.json` | Claude config dir type |
-| `hooks/` | GSD update checker, context monitor, statusline renderer |
-| `plugins/` | Plugin blocklist and marketplace config |
-| `projects/*/CLAUDE.md` | Project-specific Claude instructions |
+| `hooks/` | Context monitor and statusline renderer |
 | `memory/*/` | Project memory files (rules, feedback, references) |
-| `GSD_SETUP.md` | GSD config reference + Mac/Windows restore guide |
-| `sync.sh` | Script to snapshot current config into this repo |
+| `sync.sh` | Script to snapshot current config into this repo and commit |
 
 ## What's NOT tracked
 
 - `.credentials.json` — OAuth tokens (never commit)
 - `history.jsonl`, `sessions/`, `debug/` — ephemeral runtime data
-- `get-shit-done/` framework files — reinstalled via `/gsd:update`
 
 ## Keeping it up to date
 
-After making changes to your Claude config, run from this repo:
+`sync.sh` auto-commits and pushes when there are changes:
+
+```bash
+bash ~/.claude/../path-to-this-repo/sync.sh
+```
+
+Or run it from this repo root:
 
 ```bash
 bash sync.sh
-git add -A
-git commit -m "Update Claude config — <what changed>"
-git push
 ```
 
 ## Restoring on a new machine
 
-See [GSD_SETUP.md](GSD_SETUP.md) for full step-by-step instructions, including:
-- Mac vs Windows path differences
-- How to update the `py` → `python3` Python alias
-- How to reinstall GSD
-- How to restore memory files
+1. Clone this repo
+2. Copy files to `~/.claude/`:
+   ```bash
+   cp CLAUDE.md settings.json package.json ~/.claude/
+   cp hooks/* ~/.claude/hooks/
+   ```
+3. Update absolute paths in `settings.json` to match the new machine's username
+4. Copy memory files to `~/.claude/projects/<project-path>/memory/`
 
 ## Current platform
 
-This snapshot was taken on **Windows 11** (Josh Berger's PC), April 2026.
-Hook paths in `settings.json` reflect Windows absolute paths — see `GSD_SETUP.md` for Mac equivalents.
+macOS (Josh Berger's MacBook), April 2026. Hook paths in `settings.json` use `/Users/joshuaberger/`.
